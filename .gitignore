@@ -1,0 +1,9 @@
+.build/
+.DS_Store
+*.xcuserdata
+DerivedData/
+ClaudeUsage.app/
+.swiftpm/
+icon.iconset/
+.remember/
+.claude/

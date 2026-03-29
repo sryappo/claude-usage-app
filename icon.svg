@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <!-- macOS squircle clip path -->
+    <clipPath id="squircle">
+      <path d="M512 0C735 0 800 0 870 20C920 35 960 65 985 105C1010 150 1024 220 1024 512C1024 804 1010 874 985 919C960 959 920 989 870 1004C800 1024 735 1024 512 1024C289 1024 224 1024 154 1004C104 989 64 959 39 919C14 874 0 804 0 512C0 220 14 150 39 105C64 65 104 35 154 20C224 0 289 0 512 0Z"/>
+    </clipPath>
+
+    <!-- Background gradient -->
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1a1e"/>
+      <stop offset="100%" stop-color="#0d0d10"/>
+    </linearGradient>
+
+    <!-- Accent gradient (Claude terracotta) -->
+    <linearGradient id="accent" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#D4A574"/>
+      <stop offset="100%" stop-color="#C4845C"/>
+    </linearGradient>
+
+    <!-- Track gradient -->
+    <linearGradient id="track" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2a2a30"/>
+      <stop offset="100%" stop-color="#1f1f24"/>
+    </linearGradient>
+
+    <!-- Glow filter -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <!-- Subtle inner shadow -->
+    <filter id="innerShadow">
+      <feOffset dx="0" dy="4"/>
+      <feGaussianBlur stdDeviation="6"/>
+      <feComposite operator="out" in="SourceGraphic"/>
+      <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.4 0"/>
+      <feBlend in="SourceGraphic" mode="normal"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <g clip-path="url(#squircle)">
+    <rect width="1024" height="1024" fill="url(#bg)"/>
+
+    <!-- Subtle grid texture -->
+    <g opacity="0.03">
+      <line x1="256" y1="0" x2="256" y2="1024" stroke="white" stroke-width="1"/>
+      <line x1="512" y1="0" x2="512" y2="1024" stroke="white" stroke-width="1"/>
+      <line x1="768" y1="0" x2="768" y2="1024" stroke="white" stroke-width="1"/>
+      <line x1="0" y1="256" x2="1024" y2="256" stroke="white" stroke-width="1"/>
+      <line x1="0" y1="512" x2="1024" y2="512" stroke="white" stroke-width="1"/>
+      <line x1="0" y1="768" x2="1024" y2="768" stroke="white" stroke-width="1"/>
+    </g>
+
+    <!-- Circular gauge track -->
+    <circle cx="512" cy="460" r="220" fill="none" stroke="url(#track)" stroke-width="36" stroke-linecap="round"
+            transform="rotate(-90 512 460)"
+            stroke-dasharray="1382.3" stroke-dashoffset="345.6"/>
+
+    <!-- Gauge fill (35% usage) — the warm accent arc -->
+    <circle cx="512" cy="460" r="220" fill="none" stroke="url(#accent)" stroke-width="36" stroke-linecap="round"
+            transform="rotate(-90 512 460)"
+            stroke-dasharray="1382.3" stroke-dashoffset="1019.5"
+            filter="url(#glow)"/>
+
+    <!-- Glow behind the arc -->
+    <circle cx="512" cy="460" r="220" fill="none" stroke="#D4A574" stroke-width="36" stroke-linecap="round"
+            transform="rotate(-90 512 460)"
+            stroke-dasharray="1382.3" stroke-dashoffset="1019.5"
+            opacity="0.15" style="filter: blur(20px)"/>
+
+    <!-- Center percentage text -->
+    <text x="512" y="445" text-anchor="middle" font-family="-apple-system, SF Pro Display, Helvetica Neue" font-size="120" font-weight="200" fill="#ffffff" letter-spacing="-4">
+      35
+    </text>
+    <text x="512" y="445" text-anchor="middle" font-family="-apple-system, SF Pro Display, Helvetica Neue" font-size="120" font-weight="200" fill="#ffffff" letter-spacing="-4" opacity="0.9">
+      35
+    </text>
+    <text x="600" y="420" text-anchor="start" font-family="-apple-system, SF Pro Display, Helvetica Neue" font-size="40" font-weight="300" fill="#D4A574" opacity="0.9">
+      %
+    </text>
+
+    <!-- "USAGE" label -->
+    <text x="512" y="510" text-anchor="middle" font-family="-apple-system, SF Pro Display, Helvetica Neue" font-size="28" font-weight="500" fill="#ffffff" opacity="0.35" letter-spacing="8">
+      USAGE
+    </text>
+
+    <!-- Bottom bars representing session + weekly -->
+    <g transform="translate(310, 700)">
+      <!-- Session bar -->
+      <rect x="0" y="0" width="404" height="8" rx="4" fill="#1f1f24"/>
+      <rect x="0" y="0" width="141" height="8" rx="4" fill="url(#accent)" opacity="0.9"/>
+      <text x="0" y="-10" font-family="-apple-system, SF Pro Text, Helvetica Neue" font-size="18" font-weight="500" fill="#ffffff" opacity="0.3" letter-spacing="2">
+        SESSION
+      </text>
+
+      <!-- Weekly bar -->
+      <rect x="0" y="52" width="404" height="8" rx="4" fill="#1f1f24"/>
+      <rect x="0" y="52" width="242" height="8" rx="4" fill="#D4A574" opacity="0.5"/>
+      <text x="0" y="42" font-family="-apple-system, SF Pro Text, Helvetica Neue" font-size="18" font-weight="500" fill="#ffffff" opacity="0.3" letter-spacing="2">
+        WEEKLY
+      </text>
+    </g>
+
+    <!-- Top-left Claude sparkle mark -->
+    <g transform="translate(100, 100)" opacity="0.12">
+      <circle cx="0" cy="0" r="6" fill="#D4A574"/>
+      <circle cx="24" cy="-12" r="4" fill="#D4A574"/>
+      <circle cx="12" cy="20" r="3" fill="#D4A574"/>
+    </g>
+  </g>
+</svg>
